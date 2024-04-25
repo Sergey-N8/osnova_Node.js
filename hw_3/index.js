@@ -29,18 +29,18 @@ const count = {
 
 fs.writeFileSync(pathToFile, JSON.stringify(count, null, 2));
 
-const countRead = JSON.parse(fs.readFileSync(pathToFile, 'utf-8'));
+const countChange = JSON.parse(fs.readFileSync(pathToFile, 'utf-8'));
 
 app.get('/', (req, res) => {
-  countRead.main += 1;
-  fs.writeFileSync(pathToFile, JSON.stringify(countRead, null, 2));
-  res.send('<h1>Это main "/"</h1><a href= "/about">Перейти about</a><p>Счетчик main страницы: ' + countRead.main + '</p>')
+  countChange.main += 1;
+  fs.writeFileSync(pathToFile, JSON.stringify(countChange, null, 2));
+  res.send('<h1>Это main "/"</h1><a href= "/about">Перейти about</a><p>Счетчик main страницы: ' + countChange.main + '</p>')
   count.main;
 });
 app.get('/about', (req, res) => {
-  countRead.about += 1;
-  fs.writeFileSync(pathToFile, JSON.stringify(countRead, null, 2));
-  res.send('<h1>Это about "/about"</h1><a href= "/">Перейти main</a><p>Счетчик about страницы: ' + countRead.about + '</p>');
+  countChange.about += 1;
+  fs.writeFileSync(pathToFile, JSON.stringify(countChange, null, 2));
+  res.send('<h1>Это about "/about"</h1><a href= "/">Перейти main</a><p>Счетчик about страницы: ' + countChange.about + '</p>');
 });
 
 app.listen(3000);
